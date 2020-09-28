@@ -23,7 +23,7 @@ function PrintBoard() {
     for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
       sq = FR2SQ(file, rank);
       piece = GameBoard.pieces[sq];
-      line += (" " + PceChar[piece] + " ");
+      line += " " + PceChar[piece] + " ";
       // line += " " + piece + " ";
     }
     console.log(line);
@@ -62,7 +62,7 @@ function GeneratePosKey() {
   if (GameBoard.enPas != SQUARES.NO_SQ) {
     finalKey ^= PieceKeys[GameBoard.enPas];
   }
-  finalKey ^= castleKeys[GameBoard.castlePerm];
+  finalKey ^= CastleKeys[GameBoard.castlePerm];
   return finalKey;
 }
 
@@ -339,6 +339,5 @@ function PrintSqAttacked() {
     }
     console.log(line);
   }
-
   console.log("");
 }

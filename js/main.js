@@ -32,7 +32,7 @@ function InitHashKeys() {
   }
   sideKey = RAND_32();
   for (index = 0; index < 16; ++index) {
-    castleKeys[index] = RAND_32();
+    CastleKeys[index] = RAND_32();
   }
 }
 

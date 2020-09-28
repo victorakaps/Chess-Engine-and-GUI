@@ -285,11 +285,12 @@ let LoopSlidePce = [
   PIECES.bQ,
   0,
 ];
-let LoopSlideIndex = [0,4]
+let LoopSlideIndex = [0, 4];
 
 let PieceKeys = new Array(14 * 120);
-let sideKey;
-let castleKeys = new Array(16);
+let SideKey;
+let CastleKeys = new Array(16);
+
 
 let Sq120ToSq64 = new Array(BRD_SQ_NUM);
 let Sq64ToSq120 = new Array(64);
@@ -345,4 +346,17 @@ function SQOFFBOARD(sq) {
     return BOOL.TRUE;
   }
   return BOOL.FALSE;
+}
+
+function HASH_PCE(pce, sq) {
+  GameBoard.posKey ^= PieceKeys[pce * 120 + sq];
+}
+function HASH_CA() {
+  GameBoard.posKey ^= CastleKeys[GameBoard.castlePerm];
+}
+function HASH_SIDE() {
+  GameBoard.posKey ^= SideKey;
+}
+function HASH_EP() {
+  GameBoard.posKey ^= PieceKeys[GameBoard.enPas];
 }

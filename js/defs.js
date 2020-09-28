@@ -66,14 +66,14 @@ let SQUARES = {
 
 let BOOL = { FALSE: 0, TRUE: 1 };
 
-let MAXGAAMEMOVES = 2048;
+let MAXGAMEMOVES = 2048;
 let MAXPOSITIONMOVES = 256;
 let MAXDEPTH = 64;
 
 let FilesBrd = new Array(BRD_SQ_NUM);
 let RanksBrd = new Array(BRD_SQ_NUM);
 
-let START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
+let START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 let PceChar = ".PNBRQKpnbrqk";
 let SideChar = "wb-";
@@ -286,11 +286,134 @@ let LoopSlidePce = [
   0,
 ];
 let LoopSlideIndex = [0, 4];
+let Kings = [PIECES.wK, PIECES.bK];
+
+var CastlePerm = [
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  13,
+  15,
+  15,
+  15,
+  12,
+  15,
+  15,
+  14,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  7,
+  15,
+  15,
+  15,
+  3,
+  15,
+  15,
+  11,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+  15,
+];
 
 let PieceKeys = new Array(14 * 120);
 let SideKey;
 let CastleKeys = new Array(16);
-
 
 let Sq120ToSq64 = new Array(BRD_SQ_NUM);
 let Sq64ToSq120 = new Array(64);

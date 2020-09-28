@@ -2,6 +2,7 @@ $(function () {
   console.log("main loaded");
   ParseFen(START_FEN);
   PrintBoard();
+  GenerateMoves();
 });
 
 function InitFilesRanksBrd() {

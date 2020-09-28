@@ -1,5 +1,5 @@
 $("#SetFen").click(function(){
-    var fenStr = $("#fenIn").val();
+    let fenStr = $("#fenIn").val();
     ParseFen(fenStr)
     PrintBoard()
 })

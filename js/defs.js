@@ -73,18 +73,18 @@ let MAXDEPTH = 64;
 let FilesBrd = new Array(BRD_SQ_NUM);
 let RanksBrd = new Array(BRD_SQ_NUM);
 
-var START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+let START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-var PceChar = ".PNBRQKpnbrqk";
-var SideChar = "wb-";
-var RankChar = "12345678";
-var FileChar = "abcdefgh";
+let PceChar = ".PNBRQKpnbrqk";
+let SideChar = "wb-";
+let RankChar = "12345678";
+let FileChar = "abcdefgh";
 
 function FR2SQ(f, r) {
   return 21 + f + r * 10;
 }
 
-var PieceBig = [
+let PieceBig = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
@@ -99,7 +99,7 @@ var PieceBig = [
   BOOL.TRUE,
   BOOL.TRUE,
 ];
-var PieceMaj = [
+let PieceMaj = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -114,7 +114,7 @@ var PieceMaj = [
   BOOL.TRUE,
   BOOL.TRUE,
 ];
-var PieceMin = [
+let PieceMin = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
@@ -129,7 +129,7 @@ var PieceMin = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-var PieceVal = [
+let PieceVal = [
   0,
   100,
   325,
@@ -144,7 +144,7 @@ var PieceVal = [
   1000,
   50000,
 ];
-var PieceCol = [
+let PieceCol = [
   COLOURS.BOTH,
   COLOURS.WHITE,
   COLOURS.WHITE,
@@ -160,7 +160,7 @@ var PieceCol = [
   COLOURS.BLACK,
 ];
 
-var PiecePawn = [
+let PiecePawn = [
   BOOL.FALSE,
   BOOL.TRUE,
   BOOL.FALSE,
@@ -175,7 +175,7 @@ var PiecePawn = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-var PieceKnight = [
+let PieceKnight = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
@@ -190,7 +190,7 @@ var PieceKnight = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-var PieceKing = [
+let PieceKing = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -205,7 +205,7 @@ var PieceKing = [
   BOOL.FALSE,
   BOOL.TRUE,
 ];
-var PieceRookQueen = [
+let PieceRookQueen = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -220,7 +220,7 @@ var PieceRookQueen = [
   BOOL.TRUE,
   BOOL.FALSE,
 ];
-var PieceBishopQueen = [
+let PieceBishopQueen = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -235,7 +235,7 @@ var PieceBishopQueen = [
   BOOL.TRUE,
   BOOL.FALSE,
 ];
-var PieceSlides = [
+let PieceSlides = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -251,10 +251,10 @@ var PieceSlides = [
   BOOL.FALSE,
 ];
 
-var KnDir = [-8, -19, -21, -12, 8, 19, 21, 12];
-var RkDir = [-1, -10, 1, 10];
-var BiDir = [-9, -11, 11, 9];
-var KiDir = [-1, -10, 1, 10, -9, -11, 11, 9];
+let KnDir = [-8, -19, -21, -12, 8, 19, 21, 12];
+let RkDir = [-1, -10, 1, 10];
+let BiDir = [-9, -11, 11, 9];
+let KiDir = [-1, -10, 1, 10, -9, -11, 11, 9];
 
 let PieceKeys = new Array(14 * 120);
 let sideKey;
@@ -283,3 +283,29 @@ function SQ120(sq64) {
 function PCEINDEX(pce, pceNum) {
   return pce * 10 + pceNum;
 }
+
+function FROMSQ(n) {
+  return n & 0x7f;
+}
+
+function TOSQ(n) {
+  return (n >> 7) & 0x7f;
+}
+
+function CAPTURED(n) {
+  return (n >> 14) & 0xf;
+}
+
+function PROMOTED(n) {
+  return (n >> 20) & 0x7f;
+}
+
+let MFLAGEP = 0x40000;
+let MFLAGPs = 0x80000;
+let MFLAGCA = 0x1000000;
+
+let MFLAGCAP = 0x7c000;
+let MFLAGPROM = 0xf00000;
+
+let NOMOVE = 0;
+

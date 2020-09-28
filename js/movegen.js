@@ -17,6 +17,50 @@ function AddEnPassaneMove(move) {
   GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++] = 0;
 }
 
+function AddWhitePawnCaptureMove(from, to, cap) {
+  if (RanksBrd[from] == RANKS.RANK_7) {
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wQ, 0));
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wR, 0));
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wB, 0));
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wN, 0));
+  } else {
+    AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, 0));
+  }
+}
+
+function AddWhitePawnQuietMove(from, to) {
+  if (RanksBrd[from] == RANKS.RANK_7) {
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, 0));
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wR, 0));
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wB, 0));
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wN, 0));
+  } else {
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, 0));
+  }
+}
+
+function AddBlackPawnCaptureMove(from, to, cap) {
+  if (RanksBrd[from] == RANKS.RANK_2) {
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bQ, 0));
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bR, 0));
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bB, 0));
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bN, 0));
+  } else {
+    AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, 0));
+  }
+}
+
+function AddBlackPawnQuietMove(from, to) {
+  if (RanksBrd[from] == RANKS.RANK_2) {
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, 0));
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bR, 0));
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bB, 0));
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bN, 0));
+  } else {
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, 0));
+  }
+}
+
 function GenerateMoves() {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
@@ -29,35 +73,39 @@ function GenerateMoves() {
   var dir;
   if (GameBoard.side == COLOURS.WHITE) {
     pceType = PIECES.wP;
-    for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceType) {
+    for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
       if (GameBoard.pieces[sq + 10] == PIECES.EMPTY) {
-        // PAwn move
+        AddWhitePawnQuietMove(sq, sq + 10);
         if (
           RanksBrd[sq] == RANKS.RANK_2 &&
           GameBoard.pieces[sq + 20] == PIECES.EMPTY
         ) {
-          // add quiet move
+          AddQuietMove(MOVE(sq, sq + 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
         }
       }
       if (
         SQOFFBOARD(sq + 9) == BOOL.FALSE &&
         PieceCol[GameBoard.pieces[sq + 9]] == COLOURS.BLACK
       ) {
-        // Pawn Move
+        AddWhitePawnCaptureMove(sq, sq + 9, GameBoard.pieces[sq + 9]);
       }
       if (
         SQOFFBOARD(sq + 11) == BOOL.FALSE &&
         PieceCol[GameBoard.pieces[sq + 11]] == COLOURS.BLACK
       ) {
-        // Pawn Move
+        AddWhitePawnCaptureMove(sq, sq + 11, GameBoard.pieces[sq + 9]);
       }
       if (GameBoard != SQUARES.NO_SQ) {
         if (sq + 9 == GameBoard.enPas) {
-          // en pasan move
+          AddEnPassaneMove(
+            MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+          );
         }
         if (sq + 11 == GameBoard.enPas) {
-          // en pasan move
+          AddEnPassaneMove(
+            MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+          );
         }
       }
     }
@@ -71,7 +119,9 @@ function GenerateMoves() {
           SqAttacked(SQUARES.F1, COLOURS.BLACK) == BOOL.FALSE &&
           SqAttacked(SQUARES.E1, COLOURS.BLACK) == BOOL.FALSE
         ) {
-          // add quiet white king side castel move
+          AddQuietMove(
+            MOVE(SQUARES.E1, SQUARES.G1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+          );
         }
       }
     }
@@ -86,41 +136,48 @@ function GenerateMoves() {
           SqAttacked(SQUARES.D1, COLOURS.BLACK) == BOOL.FALSE &&
           SqAttacked(SQUARES.E1, COLOURS.BLACK) == BOOL.FALSE
         ) {
-          // add quiet white queen side castle move
+          AddQuietMove(
+            MOVE(SQUARES.E1, SQUARES.C1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+          );
         }
       }
     }
+    pceType = PIECES.wN;
   } else {
     pceType = PIECES.bP;
-    for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceType) {
+    for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
       if (GameBoard.pieces[sq - 10] == PIECES.EMPTY) {
-        // PAwn move
+        AddBlackPawnQuietMove(sq, sq - 10);
         if (
           RanksBrd[sq] == RANKS.RANK_7 &&
           GameBoard.pieces[sq - 20] == PIECES.EMPTY
         ) {
-          // add quiet move
+          AddQuietMove(MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
         }
       }
       if (
         SQOFFBOARD(sq - 9) == BOOL.FALSE &&
         PieceCol[GameBoard.pieces[sq - 9]] == COLOURS.WHITE
       ) {
-        // Pawn Move
+        AddBlackPawnCaptureMove(sq, sq - 9, GameBoard.pieces[sq - 9]);
       }
       if (
         SQOFFBOARD(sq - 11) == BOOL.FALSE &&
         PieceCol[GameBoard.pieces[sq - 11]] == COLOURS.WHITE
       ) {
-        // Pawn Move
+        AddBlackPawnCaptureMove(sq, sq - 11, GameBoard.pieces[sq - 11]);
       }
       if (GameBoard != SQUARES.NO_SQ) {
         if (sq - 9 == GameBoard.enPas) {
-          // en pasan move
+          AddEnPassaneMove(
+            MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+          );
         }
         if (sq - 11 == GameBoard.enPas) {
-          // en pasan move
+          AddEnPassaneMove(
+            MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+          );
         }
       }
     }
@@ -133,7 +190,9 @@ function GenerateMoves() {
           SqAttacked(SQUARES.F8, COLOURS.WHITE) == BOOL.FALSE &&
           SqAttacked(SQUARES.E8, COLOURS.WHITE) == BOOL.FALSE
         ) {
-          // add quiet black king side castel move
+          AddQuietMove(
+            MOVE(SQUARES.E8, SQUARES.G8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+          );
         }
       }
     }
@@ -148,10 +207,13 @@ function GenerateMoves() {
           SqAttacked(SQUARES.D8, COLOURS.BLACK) == BOOL.FALSE &&
           SqAttacked(SQUARES.E8, COLOURS.BLACK) == BOOL.FALSE
         ) {
-          // add quiet white queen side castle move
+          AddQuietMove(
+            MOVE(SQUARES.E8, SQUARES.C8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+          );
         }
       }
     }
+    pceType = PIECES.bN;
   }
   pceIndex = LoopNonSlideIndex[GameBoard.side];
   pce = LoopNonSlidePce[pceIndex++];

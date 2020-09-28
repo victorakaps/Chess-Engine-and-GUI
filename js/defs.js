@@ -73,7 +73,7 @@ let MAXDEPTH = 64;
 let FilesBrd = new Array(BRD_SQ_NUM);
 let RanksBrd = new Array(BRD_SQ_NUM);
 
-let START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+let START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
 
 let PceChar = ".PNBRQKpnbrqk";
 let SideChar = "wb-";
@@ -332,7 +332,7 @@ function PROMOTED(n) {
 }
 
 let MFLAGEP = 0x40000;
-let MFLAGPs = 0x80000;
+let MFLAGPS = 0x80000;
 let MFLAGCA = 0x1000000;
 
 let MFLAGCAP = 0x7c000;

@@ -1,10 +1,13 @@
 $(function () {
-  console.log("main loaded");
+  init();
   ParseFen(START_FEN);
   PrintBoard();
   GenerateMoves();
   PrintMoveList();
   PrintPieceLists();
+  CheckBoard();
+  MakeMove(GameBoard.moveList[0]);
+  PrintBoard();
   CheckBoard();
 });
 
@@ -79,5 +82,3 @@ function init() {
   InitSq120To64();
   InitBoardVars();
 }
-
-init();

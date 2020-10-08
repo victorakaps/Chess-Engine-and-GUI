@@ -131,9 +131,71 @@ function MakeMove(move) {
   HASH_SIDE();
 
   if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side)) {
-    // TakeMove();
+    TakeMove();
     return BOOL.FALSE;
   }
 
   return BOOL.TRUE;
+}
+
+function TakeMove() {
+  GameBoard.hisPly--;
+  GameBoard.ply--;
+
+  var move = GameBoard.history[GameBoard.hisPly].move;
+  var from = FROMSQ(move);
+  var to = TOSQ(move);
+
+  if (GameBoard.enPas != SQUARES.NO_SQ) HASH_EP();
+  HASH_CA();
+
+  GameBoard.castlePerm = GameBoard.history[GameBoard.hisPly].castlePerm;
+  GameBoard.fiftyMove = GameBoard.history[GameBoard.hisPly].fiftyMove;
+  GameBoard.enPas = GameBoard.history[GameBoard.hisPly].enPas;
+
+  if (GameBoard.enPas != SQUARES.NO_SQ) HASH_EP();
+  HASH_CA();
+
+  GameBoard.side ^= 1;
+  HASH_SIDE();
+
+  if ((MFLAGEP & move) != 0) {
+    if (GameBoard.side == COLOURS.WHITE) {
+      AddPiece(to - 10, PIECES.bP);
+    } else {
+      AddPiece(to + 10, PIECES.wP);
+    }
+  } else if ((MFLAGCA & move) != 0) {
+    switch (to) {
+      case SQUARES.C1:
+        MovePiece(SQUARES.D1, SQUARES.A1);
+        break;
+      case SQUARES.C8:
+        MovePiece(SQUARES.D8, SQUARES.A8);
+        break;
+      case SQUARES.G1:
+        MovePiece(SQUARES.F1, SQUARES.H1);
+        break;
+      case SQUARES.G8:
+        MovePiece(SQUARES.F8, SQUARES.H8);
+        break;
+      default:
+        break;
+    }
+  }
+
+  MovePiece(to, from);
+
+  var captured = CAPTURED(move);
+  if (captured != PIECES.EMPTY) {
+    AddPiece(to, captured);
+  }
+
+  if (PROMOTED(move) != PIECES.EMPTY) {
+    ClearPiece(from);
+    AddPiece(
+      from,
+      PieceCol[PROMOTED(move)] == COLOURS.WHITE ? PIECES.wP : PIECES.bP
+    );
+  }
 }

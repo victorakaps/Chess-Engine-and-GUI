@@ -1,5 +1,6 @@
-$("#SetFen").click(function(){
-    let fenStr = $("#fenIn").val();
-    ParseFen(fenStr)
-    PrintBoard()
-})
+$("#SetFen").click(function () {
+  var fenStr = $("#fenIn").val();
+  ParseFen(fenStr);
+  PrintBoard();
+  PerftTest(5);
+});

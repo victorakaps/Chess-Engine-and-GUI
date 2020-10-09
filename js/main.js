@@ -84,6 +84,69 @@ function InitBoardVars() {
   }
 }
 
+function InitBoardSquares() {
+  var light = 0;
+  var rankName;
+  var fileName;
+  var divString;
+  var lastLight = 0;
+  var rankIter = 0;
+  var fileIter = 0;
+  var lightString;
+
+  for (rankIter = RANKS.RANK_8; rankIter >= RANKS.RANK_1; rankIter--) {
+    light = lastLight ^ 1;
+    lastLight ^= 1;
+    rankName = "rank" + (rankIter + 1);
+    for (fileIter = FILES.FILE_A; fileIter <= FILES.FILE_H; fileIter++) {
+      fileName = "file" + (fileIter + 1);
+
+      if (light == 0) lightString = "Light";
+      else lightString = "Dark";
+      divString =
+        '<div class="Square ' +
+        rankName +
+        " " +
+        fileName +
+        " " +
+        lightString +
+        '"/>';
+      light ^= 1;
+      $("#Board").append(divString);
+    }
+  }
+}
+
+function InitBoardSquares() {
+  var light = 1;
+  var rankName;
+  var fileName;
+  var divString;
+  var rankIter;
+  var fileIter;
+  var lightString;
+
+  for (rankIter = RANKS.RANK_8; rankIter >= RANKS.RANK_1; rankIter--) {
+    light ^= 1;
+    rankName = "rank" + (rankIter + 1);
+    for (fileIter = FILES.FILE_A; fileIter <= FILES.FILE_H; fileIter++) {
+      fileName = "file" + (fileIter + 1);
+      if (light == 0) lightString = "Light";
+      else lightString = "Dark";
+      light ^= 1;
+      divString =
+        '<div class="Square ' +
+        rankName +
+        " " +
+        fileName +
+        " " +
+        lightString +
+        '"/>';
+      $("#Board").append(divString);
+    }
+  }
+}
+
 function init() {
   console.log("init() called");
   InitFilesRanksBrd();
@@ -91,4 +154,5 @@ function init() {
   InitSq120To64();
   InitBoardVars();
   InitMvvLva();
+  InitBoardSquares();
 }

@@ -19,6 +19,10 @@ GameBoard.posKey = 0;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveScores = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveListStart = new Array(MAXDEPTH);
+GameBoard.PvTable = [];
+GameBoard.PvArray = new Array(MAXDEPTH);
+GameBoard.searchHistory = new Array(14 * BRD_SQ_NUM);
+GameBoard.searchKillers = new Array(3 * MAXDEPTH);
 
 function CheckBoard() {
   var t_pceNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -169,8 +173,6 @@ function UpdateListsMaterial() {
       GameBoard.pceNum[piece]++;
     }
   }
-
-  PrintPieceLists();
 }
 
 function ResetBoard() {
@@ -317,7 +319,6 @@ function ParseFen(fen) {
 
   GameBoard.posKey = GeneratePosKey();
   UpdateListsMaterial();
-  PrintSqAttacked();
 }
 
 function PrintSqAttacked() {

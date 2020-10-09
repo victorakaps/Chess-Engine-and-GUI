@@ -29,7 +29,6 @@ function Perft(depth) {
 
 function PerftTest(depth) {
   PrintBoard();
-  GenerateMoves();
   console.log("Starting Test To Depth:" + depth);
   perft_leafNodes = 0;
 

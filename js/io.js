@@ -46,7 +46,16 @@ function PrintMoveList() {
     ++index
   ) {
     move = GameBoard.moveList[index];
-    console.log("Move:" + num + ":" + PrMove(move));
+    console.log(
+      "IMove:" +
+        num +
+        ":(" +
+        index +
+        "):" +
+        PrMove(move) +
+        " Score:" +
+        GameBoard.moveScores[index]
+    );
     num++;
   }
   console.log("End MoveList");

@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/victorakaps)
 
+### https://parthsethi.me/Chess-Engine-and-GUI/
+
 <img align="left" src="https://imgur.com/buTZaOe.gif" width="850px"/> \
 
 # About This Chess Engine

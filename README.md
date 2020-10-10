@@ -4,20 +4,20 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/victorakaps)
 
-<img align="left" src="https://imgur.com/buTZaOe.gif" width="800px"/> 
+<img align="left" src="https://imgur.com/buTZaOe.gif" width="850px"/> \
 
-## About This Chess Engine
+# About This Chess Engine
 This chess engine with GUI is done with vanilla javascript, engine is based on vice chess engine that is creation of bluefever software, This AI model is itself programmed in plain javascript, and works on Alpha Beta Pruning [search algorithm](https://en.wikipedia.org/wiki/Search_algorithm) model with [transposition table](https://www.chessprogramming.org/Transposition_Table "Transposition Table"), [null move pruning](https://www.chessprogramming.org/Null_Move_Pruning "Null Move Pruning") and [quiescence](https://www.chessprogramming.org/Quiescence_Search "Quiescence Search") inside an [iterative deepening framework](https://www.chessprogramming.org/Iterative_Deepening "Iterative Deepening"). Board and pieces are scrapped from chess.com
 
 
 
-## Credits
+# Credits
 ### Vice Chess Engine
     Bluefever Software 
 ### Chess Board and Pieces
 	Chess.com
 
-## License
+# License
 
 ##### MIT
 

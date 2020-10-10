@@ -156,7 +156,7 @@ function AddGUIPiece(sq, pce) {
   var rankName = " rank" + (rank + 1);
   var fileName = "file" + (file + 1);
   var pieceFileName =
-    "../utils/pieces_img/" +
+    "./pieces_img/" +
     SideChar[PieceCol[pce]] +
     PceChar[pce].toUpperCase() +
     ".png";

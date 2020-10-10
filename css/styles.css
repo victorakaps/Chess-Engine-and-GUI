@@ -1,15 +1,17 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background-color: #52504c;
 }
 
-.header {
-  min-height: 50px;
-  color: white;
-}
 
 #Board {
   position: relative;
   left: 60px;
+  top: 20px;
   width: 640px;
   height: 640px;
   border: solid grey 2px;
@@ -20,8 +22,8 @@ body {
   background-color: #ffffff;
   position: absolute;
   left: 800px;
-  top: 60px;
-  height: 600px;
+  top: 30px;
+  height: 635px;
 }
 
 .Logo {
@@ -38,6 +40,9 @@ body {
 
 .DetailsList {
   list-style: none;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .DetailsList li {
@@ -55,8 +60,8 @@ body {
 }
 
 .Btns i {
-  font-size: 30px;
-  padding: 5px;
+  font-size: 35px;
+  padding: 10px;
   color: #434343;
 }
 
@@ -74,6 +79,24 @@ body {
 #FenInDiv > button > i {
   font-size: 30px;
   padding: 5px;
+}
+
+#GameStatus{
+  font-weight: bold;
+}
+
+#Footer{
+  background-color: #dbd9d7;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
+#Footer a{
+  color: #434343;
+  text-decoration: none;
 }
 
 .Square {
@@ -158,4 +181,14 @@ body {
 
 .Hide {
   display: none;
+}
+
+footer{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  font-size: 150%;
+  color: #dbd9d7;
+  background-color: #42403d;
 }

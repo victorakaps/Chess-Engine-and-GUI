@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Victor Chess</title>
+    <link href="./css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="header">
+
+    </div>
+    <div id="Board">
+    </div>
+    <div id="EngineOutput">
+        <h1 class="Logo">VICTOR CHESS</h1>
+        <ul class="DetailsList">
+            <li><span class="label">Thinking Time: </span>
+                <select id="ThinkTimeChoice">
+                    <option value="1">1s</option>
+                    <option value="2">2s</option>
+                    <option value="4">4s</option>
+                    <option value="6">6s</option>
+                    <option value="8">8s</option>
+                    <option value="10">10s</option>
+                </select>
+            </li>
+            <li><span class="label">Best Move: </span><span id="BestOut">N/A</span></li>
+            <li><span class="label">Depth Reached: </span><span id="DepthOut">N/A</span></li>
+            <li><span class="label">Current Score: </span><span id="ScoreOut">N/A</span></li>
+            <li><span class="label">Nodes Searched: </span><span id="NodesOut">N/A</span></li>
+            <li><span class="label">Ordering: </span><span id="OrderingOut">N/A</span></li>
+            <li><span class="label">Time Per Move: </span><span id="TimeOut">N/A</span></li>
+        </ul>
+        <div class="Btns">
+            <button id="SearchButton">
+                <i class="fa fa-plus" aria-hidden="true" title="Move Now"></i>
+            </button>
+            <button id="NewGameButton">
+                <i class="fa fa-refresh" aria-hidden="true" title="New Game"></i>
+            </button>
+            <button id="TakeButton">
+                <i class="fa fa-undo" aria-hidden="true" title="Undo Move"></i>
+            </button>
+            <button id="FenButton">
+                <i class="fa fa-gear" title="Set Position"></i>
+            </button>
+        </div>
+        <div id="FenInDiv" class="Hide">
+            <input type="text" id="fenIn" placeholder="ENTER FEN HERE"><button id="SetFen">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+        </div>
+        <span id="GameStatus">current status</span>
+    </div>
+
+    <script src="js-minified/jquery.min.js"></script>
+    <script src="js-minified/defs.min.js"></script>
+    <script src="js-minified/io.min.js"></script>
+    <script src="js-minified/board.min.js"></script>
+    <script src="js-minified/movegen.min.js"></script>
+    <script src="js-minified/makemove.min.js"></script>
+    <script src="js-minified/evaluate.min.js"></script>
+    <script src="js-minified/pvtable.min.js"></script>
+    <script src="js-minified/search.min.js"></script>
+    <script src="js-minified/perft.min.js"></script>
+    <script src="js-minified/gui.min.js"></script>
+    <script src="js-minified/main.min.js"></script>
+</body>
+
+</html>

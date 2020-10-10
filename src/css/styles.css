@@ -1,0 +1,161 @@
+body {
+  background-color: #52504c;
+}
+
+.header {
+  min-height: 50px;
+  color: white;
+}
+
+#Board {
+  position: relative;
+  left: 60px;
+  width: 640px;
+  height: 640px;
+  border: solid grey 2px;
+}
+
+#EngineOutput {
+  width: 300px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 800px;
+  top: 60px;
+  height: 600px;
+}
+
+.Logo {
+  background-color: #dbd9d7;
+  margin-top: 0;
+  max-height: 160px;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  color: #666463;
+  font-family: Verdana, Tahoma;
+}
+
+.DetailsList {
+  list-style: none;
+}
+
+.DetailsList li {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.DetailsList .label {
+  font-weight: bold;
+  color: #434343;
+}
+
+.Btns {
+  margin-left: 30px;
+}
+
+.Btns i {
+  font-size: 30px;
+  padding: 5px;
+  color: #434343;
+}
+
+#FenInDiv {
+  position: relative;
+  padding: 20px;
+}
+
+#FenInDiv input {
+  margin-right: 5px;
+  padding: 15px;
+  font-size: 15px;
+}
+
+#FenInDiv > button > i {
+  font-size: 30px;
+  padding: 5px;
+}
+
+.Square {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+}
+
+.Dark {
+  background-color: #769656;
+}
+
+.Light {
+  background-color: #eeeed2;
+}
+
+.SqSelected {
+  background-color: #f6f681;
+}
+
+.rank1 {
+  top: 560px;
+}
+.rank2 {
+  top: 480px;
+}
+.rank3 {
+  top: 400px;
+}
+.rank4 {
+  top: 320px;
+}
+.rank5 {
+  top: 240px;
+}
+.rank6 {
+  top: 160px;
+}
+.rank7 {
+  top: 80px;
+}
+.rank8 {
+  top: 0px;
+}
+
+.file1 {
+  left: 0px;
+}
+.file2 {
+  left: 80px;
+}
+.file3 {
+  left: 160px;
+}
+.file4 {
+  left: 240px;
+}
+.file5 {
+  left: 320px;
+}
+.file6 {
+  left: 400px;
+}
+.file7 {
+  left: 480px;
+}
+.file8 {
+  left: 560px;
+}
+
+.Piece {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.HighlightNextMove {
+  background-color: rgba(256, 256, 256, 0.3);
+}
+
+.Hide {
+  display: none;
+}

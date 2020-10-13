@@ -83,6 +83,10 @@ body {
 
 #GameStatus{
   font-weight: bold;
+  font-size: 150%;
+  color: red;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 #Footer{

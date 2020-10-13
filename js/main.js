@@ -5,10 +5,10 @@ $(function () {
 });
 
 function InitFilesRanksBrd() {
-  var index = 0;
-  var file = FILES.FILE_A;
-  var rank = RANKS.RANK_1;
-  var sq = SQUARES.A1;
+  let index = 0;
+  let file = FILES.FILE_A;
+  let rank = RANKS.RANK_1;
+  let sq = SQUARES.A1;
 
   for (index = 0; index < BRD_SQ_NUM; ++index) {
     FilesBrd[index] = SQUARES.OFFBOARD;
@@ -25,7 +25,7 @@ function InitFilesRanksBrd() {
 }
 
 function InitHashKeys() {
-  var index = 0;
+  let index = 0;
 
   for (index = 0; index < 14 * 120; ++index) {
     PieceKeys[index] = RAND_32();
@@ -39,11 +39,11 @@ function InitHashKeys() {
 }
 
 function InitSq120To64() {
-  var index = 0;
-  var file = FILES.FILE_A;
-  var rank = RANKS.RANK_1;
-  var sq = SQUARES.A1;
-  var sq64 = 0;
+  let index = 0;
+  let file = FILES.FILE_A;
+  let rank = RANKS.RANK_1;
+  let sq = SQUARES.A1;
+  let sq64 = 0;
 
   for (index = 0; index < BRD_SQ_NUM; ++index) {
     Sq120ToSq64[index] = 65;
@@ -63,8 +63,8 @@ function InitSq120To64() {
   }
 }
 
-function InitBoardVars() {
-  var index = 0;
+function InitBoardlets() {
+  let index = 0;
   for (index = 0; index < MAXGAMEMOVES; ++index) {
     GameBoard.history.push({
       move: NOMOVE,
@@ -84,14 +84,14 @@ function InitBoardVars() {
 }
 
 function InitBoardSquares() {
-  var light = 0;
-  var rankName;
-  var fileName;
-  var divString;
-  var lastLight = 0;
-  var rankIter = 0;
-  var fileIter = 0;
-  var lightString;
+  let light = 0;
+  let rankName;
+  let fileName;
+  let divString;
+  let lastLight = 0;
+  let rankIter = 0;
+  let fileIter = 0;
+  let lightString;
 
   for (rankIter = RANKS.RANK_8; rankIter >= RANKS.RANK_1; rankIter--) {
     light = lastLight ^ 1;
@@ -117,13 +117,13 @@ function InitBoardSquares() {
 }
 
 function InitBoardSquares() {
-  var light = 1;
-  var rankName;
-  var fileName;
-  var divString;
-  var rankIter;
-  var fileIter;
-  var lightString;
+  let light = 1;
+  let rankName;
+  let fileName;
+  let divString;
+  let rankIter;
+  let fileIter;
+  let lightString;
 
   for (rankIter = RANKS.RANK_8; rankIter >= RANKS.RANK_1; rankIter--) {
     light ^= 1;
@@ -151,7 +151,7 @@ function init() {
   InitFilesRanksBrd();
   InitHashKeys();
   InitSq120To64();
-  InitBoardVars();
+  InitBoardlets();
   InitMvvLva();
   InitBoardSquares();
 }

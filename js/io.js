@@ -3,19 +3,19 @@ function PrSq(sq) {
 }
 
 function PrMove(move) {
-  var MvStr;
+  let MvStr;
 
-  var ff = FilesBrd[FROMSQ(move)];
-  var rf = RanksBrd[FROMSQ(move)];
-  var ft = FilesBrd[TOSQ(move)];
-  var rt = RanksBrd[TOSQ(move)];
+  let ff = FilesBrd[FROMSQ(move)];
+  let rf = RanksBrd[FROMSQ(move)];
+  let ft = FilesBrd[TOSQ(move)];
+  let rt = RanksBrd[TOSQ(move)];
 
   MvStr = FileChar[ff] + RankChar[rf] + FileChar[ft] + RankChar[rt];
 
-  var promoted = PROMOTED(move);
+  let promoted = PROMOTED(move);
 
   if (promoted != PIECES.EMPTY) {
-    var pchar = "q";
+    let pchar = "q";
     if (PieceKnight[promoted] == BOOL.TRUE) {
       pchar = "n";
     } else if (
@@ -35,9 +35,9 @@ function PrMove(move) {
 }
 
 function PrintMoveList() {
-  var index;
-  var move;
-  var num = 1;
+  let index;
+  let move;
+  let num = 1;
   console.log("MoveList:");
 
   for (
@@ -63,9 +63,9 @@ function PrintMoveList() {
 
 function ParseMove(from, to) {
   GenerateMoves();
-  var Move = NOMOVE;
-  var PromPce = PIECES.EMPTY;
-  var found = BOOL.FALSE;
+  let Move = NOMOVE;
+  let PromPce = PIECES.EMPTY;
+  let found = BOOL.FALSE;
   for (
     index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];

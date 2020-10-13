@@ -1,4 +1,4 @@
-var PawnTable = [
+let PawnTable = [
   0,
   0,
   0,
@@ -65,7 +65,7 @@ var PawnTable = [
   0,
 ];
 
-var KnightTable = [
+let KnightTable = [
   0,
   -10,
   0,
@@ -132,7 +132,7 @@ var KnightTable = [
   0,
 ];
 
-var BishopTable = [
+let BishopTable = [
   0,
   0,
   -10,
@@ -199,7 +199,7 @@ var BishopTable = [
   0,
 ];
 
-var RookTable = [
+let RookTable = [
   0,
   0,
   5,
@@ -266,15 +266,15 @@ var RookTable = [
   0,
 ];
 
-var BishopPair = 40;
+let BishopPair = 40;
 
 function EvalPosition() {
-  var score =
+  let score =
     GameBoard.material[COLOURS.WHITE] - GameBoard.material[COLOURS.BLACK];
 
-  var pce;
-  var sq;
-  var pceNum;
+  let pce;
+  let sq;
+  let pceNum;
 
   pce = PIECES.wP;
   for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {

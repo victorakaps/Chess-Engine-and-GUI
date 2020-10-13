@@ -1,4 +1,4 @@
-var PIECES = {
+let PIECES = {
   EMPTY: 0,
   wP: 1,
   wN: 2,
@@ -14,9 +14,9 @@ var PIECES = {
   bK: 12,
 };
 
-var BRD_SQ_NUM = 120;
+let BRD_SQ_NUM = 120;
 
-var FILES = {
+let FILES = {
   FILE_A: 0,
   FILE_B: 1,
   FILE_C: 2,
@@ -28,7 +28,7 @@ var FILES = {
   FILE_NONE: 8,
 };
 
-var RANKS = {
+let RANKS = {
   RANK_1: 0,
   RANK_2: 1,
   RANK_3: 2,
@@ -40,11 +40,11 @@ var RANKS = {
   RANK_NONE: 8,
 };
 
-var COLOURS = { WHITE: 0, BLACK: 1, BOTH: 2 };
+let COLOURS = { WHITE: 0, BLACK: 1, BOTH: 2 };
 
-var CASTLEBIT = { WKCA: 1, WQCA: 2, BKCA: 4, BQCA: 8 };
+let CASTLEBIT = { WKCA: 1, WQCA: 2, BKCA: 4, BQCA: 8 };
 
-var SQUARES = {
+let SQUARES = {
   A1: 21,
   B1: 22,
   C1: 23,
@@ -65,30 +65,30 @@ var SQUARES = {
   OFFBOARD: 100,
 };
 
-var BOOL = { FALSE: 0, TRUE: 1 };
+let BOOL = { FALSE: 0, TRUE: 1 };
 
-var MAXGAMEMOVES = 2048;
-var MAXPOSITIONMOVES = 256;
-var MAXDEPTH = 64;
-var INFINITE = 30000;
-var MATE = 29000;
-var PVENTRIES = 10000;
+let MAXGAMEMOVES = 2048;
+let MAXPOSITIONMOVES = 256;
+let MAXDEPTH = 64;
+let INFINITE = 30000;
+let MATE = 29000;
+let PVENTRIES = 10000;
 
-var FilesBrd = new Array(BRD_SQ_NUM);
-var RanksBrd = new Array(BRD_SQ_NUM);
+let FilesBrd = new Array(BRD_SQ_NUM);
+let RanksBrd = new Array(BRD_SQ_NUM);
 
-var START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+let START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-var PceChar = ".PNBRQKpnbrqk";
-var SideChar = "wb-";
-var RankChar = "12345678";
-var FileChar = "abcdefgh";
+let PceChar = ".PNBRQKpnbrqk";
+let SideChar = "wb-";
+let RankChar = "12345678";
+let FileChar = "abcdefgh";
 
 function FR2SQ(f, r) {
   return 21 + f + r * 10;
 }
 
-var PieceBig = [
+let PieceBig = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
@@ -103,7 +103,7 @@ var PieceBig = [
   BOOL.TRUE,
   BOOL.TRUE,
 ];
-var PieceMaj = [
+let PieceMaj = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -118,7 +118,7 @@ var PieceMaj = [
   BOOL.TRUE,
   BOOL.TRUE,
 ];
-var PieceMin = [
+let PieceMin = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
@@ -133,7 +133,7 @@ var PieceMin = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-var PieceVal = [
+let PieceVal = [
   0,
   100,
   325,
@@ -148,7 +148,7 @@ var PieceVal = [
   1000,
   50000,
 ];
-var PieceCol = [
+let PieceCol = [
   COLOURS.BOTH,
   COLOURS.WHITE,
   COLOURS.WHITE,
@@ -164,7 +164,7 @@ var PieceCol = [
   COLOURS.BLACK,
 ];
 
-var PiecePawn = [
+let PiecePawn = [
   BOOL.FALSE,
   BOOL.TRUE,
   BOOL.FALSE,
@@ -179,7 +179,7 @@ var PiecePawn = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-var PieceKnight = [
+let PieceKnight = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
@@ -194,7 +194,7 @@ var PieceKnight = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-var PieceKing = [
+let PieceKing = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -209,7 +209,7 @@ var PieceKing = [
   BOOL.FALSE,
   BOOL.TRUE,
 ];
-var PieceRookQueen = [
+let PieceRookQueen = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -224,7 +224,7 @@ var PieceRookQueen = [
   BOOL.TRUE,
   BOOL.FALSE,
 ];
-var PieceBishopQueen = [
+let PieceBishopQueen = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -239,7 +239,7 @@ var PieceBishopQueen = [
   BOOL.TRUE,
   BOOL.FALSE,
 ];
-var PieceSlides = [
+let PieceSlides = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -255,13 +255,13 @@ var PieceSlides = [
   BOOL.FALSE,
 ];
 
-var KnDir = [-8, -19, -21, -12, 8, 19, 21, 12];
-var RkDir = [-1, -10, 1, 10];
-var BiDir = [-9, -11, 11, 9];
-var KiDir = [-1, -10, 1, 10, -9, -11, 11, 9];
+let KnDir = [-8, -19, -21, -12, 8, 19, 21, 12];
+let RkDir = [-1, -10, 1, 10];
+let BiDir = [-9, -11, 11, 9];
+let KiDir = [-1, -10, 1, 10, -9, -11, 11, 9];
 
-var DirNum = [0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8];
-var PceDir = [
+let DirNum = [0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8];
+let PceDir = [
   0,
   0,
   KnDir,
@@ -276,9 +276,9 @@ var PceDir = [
   KiDir,
   KiDir,
 ];
-var LoopNonSlidePce = [PIECES.wN, PIECES.wK, 0, PIECES.bN, PIECES.bK, 0];
-var LoopNonSlideIndex = [0, 3];
-var LoopSlidePce = [
+let LoopNonSlidePce = [PIECES.wN, PIECES.wK, 0, PIECES.bN, PIECES.bK, 0];
+let LoopNonSlideIndex = [0, 3];
+let LoopSlidePce = [
   PIECES.wB,
   PIECES.wR,
   PIECES.wQ,
@@ -288,14 +288,14 @@ var LoopSlidePce = [
   PIECES.bQ,
   0,
 ];
-var LoopSlideIndex = [0, 4];
+let LoopSlideIndex = [0, 4];
 
-var PieceKeys = new Array(14 * 120);
-var SideKey;
-var CastleKeys = new Array(16);
+let PieceKeys = new Array(14 * 120);
+let SideKey;
+let CastleKeys = new Array(16);
 
-var Sq120ToSq64 = new Array(BRD_SQ_NUM);
-var Sq64ToSq120 = new Array(64);
+let Sq120ToSq64 = new Array(BRD_SQ_NUM);
+let Sq64ToSq120 = new Array(64);
 
 function RAND_32() {
   return (
@@ -306,7 +306,7 @@ function RAND_32() {
   );
 }
 
-var Mirror64 = [
+let Mirror64 = [
   56,
   57,
   58,
@@ -389,8 +389,8 @@ function MIRROR64(sq) {
   return Mirror64[sq];
 }
 
-var Kings = [PIECES.wK, PIECES.bK];
-var CastlePerm = [
+let Kings = [PIECES.wK, PIECES.bK];
+let CastlePerm = [
   15,
   15,
   15,
@@ -536,14 +536,14 @@ function PROMOTED(m) {
   return (m >> 20) & 0xf;
 }
 
-var MFLAGEP = 0x40000;
-var MFLAGPS = 0x80000;
-var MFLAGCA = 0x1000000;
+let MFLAGEP = 0x40000;
+let MFLAGPS = 0x80000;
+let MFLAGCA = 0x1000000;
 
-var MFLAGCAP = 0x7c000;
-var MFLAGPROM = 0xf00000;
+let MFLAGCAP = 0x7c000;
+let MFLAGPROM = 0xf00000;
 
-var NOMOVE = 0;
+let NOMOVE = 0;
 
 function SQOFFBOARD(sq) {
   if (FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
@@ -564,11 +564,11 @@ function HASH_EP() {
   GameBoard.posKey ^= PieceKeys[GameBoard.enPas];
 }
 
-var GameController = {};
+let GameController = {};
 GameController.EngineSide = COLOURS.BOTH;
 GameController.PlayerSide = COLOURS.BOTH;
 GameController.GameOver = BOOL.FALSE;
 
-var UserMove = {};
+let UserMove = {};
 UserMove.from = SQUARES.NO_SQ;
 UserMove.to = SQUARES.NO_SQ;

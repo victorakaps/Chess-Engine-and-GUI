@@ -1,5 +1,5 @@
 $("#SetFen").click(function () {
-  var fenStr = $("#fenIn").val();
+  let fenStr = $("#fenIn").val();
   if (!fenStr) {
     console.log("Trigered");
     fenStr = START_FEN;
@@ -38,9 +38,9 @@ function ClearAllPieces() {
 
 function SetInitialBoardPieces() {
   ClearAllPieces();
-  var sq;
-  var sq120;
-  var pce;
+  let sq;
+  let sq120;
+  let pce;
   for (sq = 0; sq < 64; ++sq) {
     sq120 = SQ120(sq);
     pce = GameBoard.pieces[sq120];
@@ -74,18 +74,18 @@ function SetSqSelected(sq) {
 
 function ClickedSquare(pageX, pageY) {
   console.log("clickedSquare at" + pageX + "," + pageY);
-  var position = $("#Board").position();
+  let position = $("#Board").position();
 
-  var workedX = Math.floor(position.left);
-  var WorkedY = Math.floor(position.top);
+  let workedX = Math.floor(position.left);
+  let WorkedY = Math.floor(position.top);
 
   pageX = Math.floor(pageX);
   pageY = Math.floor(pageY);
 
-  var file = Math.floor((pageX - workedX) / 80); //here
-  var rank = 7 - Math.floor((pageY - WorkedY) / 80);
+  let file = Math.floor((pageX - workedX) / 80); //here
+  let rank = 7 - Math.floor((pageY - WorkedY) / 80);
 
-  var sq = FR2SQ(file, rank);
+  let sq = FR2SQ(file, rank);
   console.log("clicked square: " + PrSq(sq));
   SetSqSelected(sq);
   return sq;
@@ -114,7 +114,7 @@ function MakeUserMove() {
   if (UserMove.from != SQUARES.NO_SQ && UserMove.to != SQUARES.NO_SQ) {
     console.log("User Move: " + PrSq(UserMove.from) + PrSq(UserMove.to));
 
-    var parsed = ParseMove(UserMove.from, UserMove.to);
+    let parsed = ParseMove(UserMove.from, UserMove.to);
     if (parsed != NOMOVE) {
       MakeMove(parsed);
       PrintBoard();
@@ -151,24 +151,24 @@ function RemoveGUIPiece(sq) {
 }
 
 function AddGUIPiece(sq, pce) {
-  var file = FilesBrd[sq];
-  var rank = RanksBrd[sq];
-  var rankName = " rank" + (rank + 1);
-  var fileName = "file" + (file + 1);
-  var pieceFileName =
+  let file = FilesBrd[sq];
+  let rank = RanksBrd[sq];
+  let rankName = " rank" + (rank + 1);
+  let fileName = "file" + (file + 1);
+  let pieceFileName =
     "./pieces_img/" +
     SideChar[PieceCol[pce]] +
     PceChar[pce].toUpperCase() +
     ".png";
-  var imageString = `<img src=${pieceFileName} class="Piece ${rankName} ${fileName}"/>`;
+  let imageString = `<img src=${pieceFileName} class="Piece ${rankName} ${fileName}"/>`;
   $("#Board").append(imageString);
 }
 
 function MoveGUIPiece(move) {
-  var from = FROMSQ(move);
-  var to = TOSQ(move);
+  let from = FROMSQ(move);
+  let to = TOSQ(move);
   if (move & MFLAGEP) {
-    var epRemove;
+    let epRemove;
     if (GameBoard.side == COLOURS.BLACK) {
       epRemove = to - 10;
     } else {
@@ -178,10 +178,10 @@ function MoveGUIPiece(move) {
   } else if (CAPTURED(move)) {
     RemoveGUIPiece(to);
   }
-  var file = FilesBrd[to];
-  var rank = RanksBrd[to];
-  var rankName = " rank" + (rank + 1);
-  var fileName = "file" + (file + 1);
+  let file = FilesBrd[to];
+  let rank = RanksBrd[to];
+  let rankName = " rank" + (rank + 1);
+  let fileName = "file" + (file + 1);
   $(".Piece").each(function (index) {
     if (
       PieceIsOnSq(from, $(this).position().top, $(this).position().left) ==
@@ -248,7 +248,7 @@ function DrawMaterial() {
 }
 
 function ThreeFoldRep() {
-  var i = 0,
+  let i = 0,
     r = 0;
 
   for (i = 0; i < GameBoard.hisPly; ++i) {
@@ -277,8 +277,8 @@ function CheckResult() {
 
   GenerateMoves();
 
-  var MoveNum = 0;
-  var found = 0;
+  let MoveNum = 0;
+  let found = 0;
 
   for (
     MoveNum = GameBoard.moveListStart[GameBoard.ply];
@@ -295,7 +295,7 @@ function CheckResult() {
 
   if (found != 0) return BOOL.FALSE;
 
-  var InCheck = SqAttacked(
+  let InCheck = SqAttacked(
     GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
     GameBoard.side ^ 1
   );
@@ -341,8 +341,8 @@ $("#SearchButton").click(function () {
 
 function StartSearch() {
   SearchController.depth = MAXDEPTH;
-  var t = $.now();
-  var tt = $("#ThinkTimeChoice").val();
+  let t = $.now();
+  let tt = $("#ThinkTimeChoice").val();
 
   SearchController.time = parseInt(tt) * 1000;
   SearchPosition();

@@ -2,7 +2,7 @@ function PCEINDEX(pce, pceNum) {
   return pce * 10 + pceNum;
 }
 
-var GameBoard = {};
+let GameBoard = {};
 
 GameBoard.pieces = new Array(BRD_SQ_NUM);
 GameBoard.side = COLOURS.WHITE;
@@ -20,14 +20,14 @@ GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveScores = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveListStart = new Array(MAXDEPTH);
 GameBoard.PvTable = [];
-GameBoard.PvArray = new Array(MAXDEPTH);
+GameBoard.Pletray = new Array(MAXDEPTH);
 GameBoard.searchHistory = new Array(14 * BRD_SQ_NUM);
 GameBoard.searchKillers = new Array(3 * MAXDEPTH);
 
 function CheckBoard() {
-  var t_pceNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var t_material = [0, 0];
-  var sq64, t_piece, t_pce_num, sq120, colour, pcount;
+  let t_pceNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let t_material = [0, 0];
+  let sq64, t_piece, t_pce_num, sq120, colour, pcount;
 
   for (t_piece = PIECES.wP; t_piece <= PIECES.bK; ++t_piece) {
     for (t_pce_num = 0; t_pce_num < GameBoard.pceNum[t_piece]; ++t_pce_num) {
@@ -74,11 +74,11 @@ function CheckBoard() {
 }
 
 function PrintBoard() {
-  var sq, file, rank, piece;
+  let sq, file, rank, piece;
 
   console.log("\nGame Board:\n");
   for (rank = RANKS.RANK_8; rank >= RANKS.RANK_1; rank--) {
-    var line = RankChar[rank] + "  ";
+    let line = RankChar[rank] + "  ";
     for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
       sq = FR2SQ(file, rank);
       piece = GameBoard.pieces[sq];
@@ -88,7 +88,7 @@ function PrintBoard() {
   }
 
   console.log("");
-  var line = "   ";
+  let line = "   ";
   for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
     line += " " + FileChar[file] + " ";
   }
@@ -107,9 +107,9 @@ function PrintBoard() {
 }
 
 function GeneratePosKey() {
-  var sq = 0;
-  var finalKey = 0;
-  var piece = PIECES.EMPTY;
+  let sq = 0;
+  let finalKey = 0;
+  let piece = PIECES.EMPTY;
 
   for (sq = 0; sq < BRD_SQ_NUM; ++sq) {
     piece = GameBoard.pieces[sq];
@@ -132,7 +132,7 @@ function GeneratePosKey() {
 }
 
 function PrintPieceLists() {
-  var piece, pceNum;
+  let piece, pceNum;
 
   for (piece = PIECES.wP; piece <= PIECES.bK; ++piece) {
     for (pceNum = 0; pceNum < GameBoard.pceNum[piece]; ++pceNum) {
@@ -147,7 +147,7 @@ function PrintPieceLists() {
 }
 
 function UpdateListsMaterial() {
-  var piece, sq, index, colour;
+  let piece, sq, index, colour;
 
   for (index = 0; index < 14 * 120; ++index) {
     GameBoard.pList[index] = PIECES.EMPTY;
@@ -176,7 +176,7 @@ function UpdateListsMaterial() {
 }
 
 function ResetBoard() {
-  var index = 0;
+  let index = 0;
 
   for (index = 0; index < BRD_SQ_NUM; ++index) {
     GameBoard.pieces[index] = SQUARES.OFFBOARD;
@@ -201,13 +201,13 @@ function ResetBoard() {
 function ParseFen(fen) {
   ResetBoard();
 
-  var rank = RANKS.RANK_8;
-  var file = FILES.FILE_A;
-  var piece = 0;
-  var count = 0;
-  var i = 0;
-  var sq120 = 0;
-  var fenCnt = 0; // fen[fenCnt]
+  let rank = RANKS.RANK_8;
+  let file = FILES.FILE_A;
+  let piece = 0;
+  let count = 0;
+  let i = 0;
+  let sq120 = 0;
+  let fenCnt = 0; // fen[fenCnt]
 
   while (rank >= RANKS.RANK_1 && fenCnt < fen.length) {
     count = 1;
@@ -322,12 +322,12 @@ function ParseFen(fen) {
 }
 
 function PrintSqAttacked() {
-  var sq, file, rank, piece;
+  let sq, file, rank, piece;
 
   console.log("\nAttacked:\n");
 
   for (rank = RANKS.RANK_8; rank >= RANKS.RANK_1; rank--) {
-    var line = rank + 1 + "  ";
+    let line = rank + 1 + "  ";
     for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
       sq = FR2SQ(file, rank);
       if (SqAttacked(sq, GameBoard.side ^ 1) == BOOL.TRUE) piece = "X";
@@ -341,9 +341,9 @@ function PrintSqAttacked() {
 }
 
 function SqAttacked(sq, side) {
-  var pce;
-  var t_sq;
-  var index;
+  let pce;
+  let t_sq;
+  let index;
 
   if (side == COLOURS.WHITE) {
     if (

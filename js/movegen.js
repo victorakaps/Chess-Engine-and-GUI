@@ -1,4 +1,4 @@
-var MvvLvaValue = [
+let MvvLvaValue = [
   0,
   100,
   200,
@@ -13,11 +13,11 @@ var MvvLvaValue = [
   500,
   600,
 ];
-var MvvLvaScores = new Array(14 * 14);
+let MvvLvaScores = new Array(14 * 14);
 
 function InitMvvLva() {
-  var Attacker;
-  var Victim;
+  let Attacker;
+  let Victim;
 
   for (Attacker = PIECES.wP; Attacker <= PIECES.bK; ++Attacker) {
     for (Victim = PIECES.wP; Victim <= PIECES.bK; ++Victim) {
@@ -30,8 +30,8 @@ function InitMvvLva() {
 function MoveExists(move) {
   GenerateMoves();
 
-  var index;
-  var moveFound = NOMOVE;
+  let index;
+  let moveFound = NOMOVE;
   for (
     index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
@@ -132,13 +132,13 @@ function GenerateMoves() {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
 
-  var pceType;
-  var pceNum;
-  var sq;
-  var pceIndex;
-  var pce;
-  var t_sq;
-  var dir;
+  let pceType;
+  let pceNum;
+  let sq;
+  let pceIndex;
+  let pce;
+  let t_sq;
+  let dir;
 
   if (GameBoard.side == COLOURS.WHITE) {
     pceType = PIECES.wP;
@@ -355,13 +355,13 @@ function GenerateCaptures() {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
 
-  var pceType;
-  var pceNum;
-  var sq;
-  var pceIndex;
-  var pce;
-  var t_sq;
-  var dir;
+  let pceType;
+  let pceNum;
+  let sq;
+  let pceIndex;
+  let pce;
+  let t_sq;
+  let dir;
 
   if (GameBoard.side == COLOURS.WHITE) {
     pceType = PIECES.wP;

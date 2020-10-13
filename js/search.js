@@ -1,4 +1,4 @@
-var SearchController = {};
+let SearchController = {};
 
 SearchController.nodes;
 SearchController.fh;
@@ -11,9 +11,9 @@ SearchController.best;
 SearchController.thinking;
 
 function PickNextMove(MoveNum) {
-  var index = 0;
-  var bestScore = -1;
-  var bestNum = MoveNum;
+  let index = 0;
+  let bestScore = -1;
+  let bestNum = MoveNum;
 
   for (
     index = MoveNum;
@@ -27,7 +27,7 @@ function PickNextMove(MoveNum) {
   }
 
   if (bestNum != MoveNum) {
-    var temp = 0;
+    let temp = 0;
     temp = GameBoard.moveScores[MoveNum];
     GameBoard.moveScores[MoveNum] = GameBoard.moveScores[bestNum];
     GameBoard.moveScores[bestNum] = temp;
@@ -52,7 +52,7 @@ function CheckUp() {
 }
 
 function IsRepetition() {
-  var index = 0;
+  let index = 0;
 
   for (
     index = GameBoard.hisPly - GameBoard.fiftyMove;
@@ -82,7 +82,7 @@ function Quiescence(alpha, beta) {
     return EvalPosition();
   }
 
-  var Score = EvalPosition();
+  let Score = EvalPosition();
 
   if (Score >= beta) {
     return beta;
@@ -94,11 +94,11 @@ function Quiescence(alpha, beta) {
 
   GenerateCaptures();
 
-  var MoveNum = 0;
-  var Legal = 0;
-  var OldAlpha = alpha;
-  var BestMove = NOMOVE;
-  var Move = NOMOVE;
+  let MoveNum = 0;
+  let Legal = 0;
+  let OldAlpha = alpha;
+  let BestMove = NOMOVE;
+  let Move = NOMOVE;
 
   for (
     MoveNum = GameBoard.moveListStart[GameBoard.ply];
@@ -160,7 +160,7 @@ function AlphaBeta(alpha, beta, depth) {
     return EvalPosition();
   }
 
-  var InCheck = SqAttacked(
+  let InCheck = SqAttacked(
     GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
     GameBoard.side ^ 1
   );
@@ -168,17 +168,17 @@ function AlphaBeta(alpha, beta, depth) {
     depth++;
   }
 
-  var Score = -INFINITE;
+  let Score = -INFINITE;
 
   GenerateMoves();
 
-  var MoveNum = 0;
-  var Legal = 0;
-  var OldAlpha = alpha;
-  var BestMove = NOMOVE;
-  var Move = NOMOVE;
+  let MoveNum = 0;
+  let Legal = 0;
+  let OldAlpha = alpha;
+  let BestMove = NOMOVE;
+  let Move = NOMOVE;
 
-  var PvMove = ProbePvTable();
+  let PvMove = ProbePvTable();
   if (PvMove != NOMOVE) {
     for (
       MoveNum = GameBoard.moveListStart[GameBoard.ply];
@@ -252,8 +252,8 @@ function AlphaBeta(alpha, beta, depth) {
 }
 
 function ClearForSearch() {
-  var index = 0;
-  var index2 = 0;
+  let index = 0;
+  let index2 = 0;
 
   for (index = 0; index < 14 * BRD_SQ_NUM; ++index) {
     GameBoard.searchHistory[index] = 0;
@@ -273,13 +273,13 @@ function ClearForSearch() {
 }
 
 function SearchPosition() {
-  var bestMove = NOMOVE;
-  var bestScore = -INFINITE;
-  var Score = -INFINITE;
-  var currentDepth = 0;
-  var line;
-  var PvNum;
-  var c;
+  let bestMove = NOMOVE;
+  let bestScore = -INFINITE;
+  let Score = -INFINITE;
+  let currentDepth = 0;
+  let line;
+  let PvNum;
+  let c;
   ClearForSearch();
 
   for (
@@ -307,7 +307,7 @@ function SearchPosition() {
     PvNum = GetPvLine(currentDepth);
     line += " Pv:";
     for (c = 0; c < PvNum; ++c) {
-      line += " " + PrMove(GameBoard.PvArray[c]);
+      line += " " + PrMove(GameBoard.Pletray[c]);
     }
     if (currentDepth != 1) {
       line +=
@@ -324,7 +324,7 @@ function SearchPosition() {
 }
 
 function UpdateDOMStats(dom_score, dom_depth) {
-  var scoreText = (dom_score / 100).toFixed(2);
+  let scoreText = (dom_score / 100).toFixed(2);
   if (Math.abs(dom_score) > MATE - MAXDEPTH) {
     scoreText = "Score: Mate In " + (MATE - Math.abs(dom_score) - 1) + " Moves";
   }
